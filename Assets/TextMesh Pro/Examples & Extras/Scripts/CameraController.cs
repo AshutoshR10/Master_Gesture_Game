@@ -1,4 +1,4 @@
-namespace Space
+namespace Flappy
 {
     using UnityEngine;
     using System.Collections;

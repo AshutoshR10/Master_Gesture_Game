@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class MasterGameManager : MonoBehaviour
 {
 
-    [ContextMenu("Test Load Scene")]
+    /*[ContextMenu("Test Load Scene")]
     public void TestLoadSceneDino()
     {
         LoadGameScene("DINO");
@@ -14,6 +14,12 @@ public class MasterGameManager : MonoBehaviour
     public void TestLoadSceneSpace()
     {
         LoadGameScene("SPACE");
+    }*/
+
+    [ContextMenu("Test Load Space")]
+    public void TestLoadSceneFlappy()
+    {
+        LoadGameScene("FLAPPY");
     }
 
     public void LoadGameScene(string keyCode)
@@ -25,6 +31,9 @@ public class MasterGameManager : MonoBehaviour
                 break;
             case "SPACE":
                 SceneManager.LoadScene("SpaceInvadersvl1");
+                break;
+            case "FLAPPY":
+                SceneManager.LoadScene("FlappyBirdlvl1");
                 break;
         }
     }

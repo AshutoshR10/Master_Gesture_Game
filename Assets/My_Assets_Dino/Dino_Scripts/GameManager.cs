@@ -9,7 +9,7 @@
     using UnityEngine.UI;
     using System.Net.Sockets;
     using System.Text;
-    using global::TMPro;
+    //using global::TMPro;
     using System.Collections.Generic;
 
     //public enum GameState

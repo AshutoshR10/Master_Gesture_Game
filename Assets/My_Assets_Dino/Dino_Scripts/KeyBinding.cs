@@ -12,7 +12,7 @@ using JetBrains.Annotations;
 
     using UnityEngine.Android;
     using UnityEngine.SceneManagement;
-    using global::TMPro;
+    //using global::TMPro;
 
     /*#if UNITY_IOS
     public class NativeAPI
