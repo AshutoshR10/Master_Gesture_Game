@@ -24,7 +24,7 @@ public class MasterGameManager : MonoBehaviour
                 SceneManager.LoadScene("DinoLvl1");
                 break;
             case "SPACE":
-                SceneManager.LoadScene("SpaceInvaderslvl1");
+                SceneManager.LoadScene("SpaceInvadersvl1");
                 break;
         }
     }
