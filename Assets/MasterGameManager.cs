@@ -16,10 +16,10 @@ public class MasterGameManager : MonoBehaviour
         LoadGameScene("SPACE");
     }*/
 
-    [ContextMenu("Test Load Space")]
+    [ContextMenu("Test Load Brick")]
     public void TestLoadSceneFlappy()
     {
-        LoadGameScene("FLAPPY");
+        LoadGameScene("BRICK");
     }
 
     public void LoadGameScene(string keyCode)
@@ -34,6 +34,9 @@ public class MasterGameManager : MonoBehaviour
                 break;
             case "FLAPPY":
                 SceneManager.LoadScene("FlappyBirdlvl1");
+                break;
+            case "BRICK":
+                SceneManager.LoadScene("BrickLevel01");
                 break;
         }
     }

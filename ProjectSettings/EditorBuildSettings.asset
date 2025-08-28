@@ -35,6 +35,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/FlappyBird/Flappy_Scenes/FlappyBirdlvl3.unity
     guid: ba8ccf83f5c2f9844bc77aaa0b939618
+  - enabled: 1
+    path: Assets/Brick_Breaker_Game/Scenes/BrickLevel01.unity
+    guid: 35bd893e7618d6d43bc3c4e8d7314f71
+  - enabled: 1
+    path: Assets/Brick_Breaker_Game/Scenes/BrickLevel2.unity
+    guid: 0a0e22d6eacad914484f7315bb87f06d
+  - enabled: 1
+    path: Assets/Brick_Breaker_Game/Scenes/BrickLevel3.unity
+    guid: 9ef254abaaf95df41ac1ca84709d81a1
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
