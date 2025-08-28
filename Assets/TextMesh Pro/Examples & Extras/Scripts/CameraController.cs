@@ -1,4 +1,4 @@
-namespace Dino
+namespace Space
 {
     using UnityEngine;
     using System.Collections;

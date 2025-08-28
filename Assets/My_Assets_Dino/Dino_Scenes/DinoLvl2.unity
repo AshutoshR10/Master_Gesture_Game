@@ -2571,6 +2571,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialGameSpeed: 4
   gameSpeedIncrease: 0.001
+  dinoGameScenes: 010000000200000003000000
   scoreText: {fileID: 550957954}
   hiscoreText: {fileID: 151625051}
   startText: {fileID: 721088931}

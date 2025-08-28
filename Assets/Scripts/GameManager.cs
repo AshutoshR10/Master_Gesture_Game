@@ -6,7 +6,7 @@
     using System.Net.Sockets;
     using System.Runtime.CompilerServices;
     using System.Text;
-    //using TMPro;
+    using TMPro;
     using UnityEngine;
     using UnityEngine.Networking;
     using UnityEngine.SceneManagement;
@@ -20,8 +20,6 @@
         // Existing UIs – note that gameOverUI is still used when lives reach 0.
         [SerializeField] private TextMeshProUGUI raiseHandPromptText;
 
-        [SerializeField] private List<int> spaceGameScenes = new List<int> { 3, 4, 5 };
-
         [SerializeField] public GameObject raiseHandPanel;
         private bool waitingForHand = false;
 
@@ -29,6 +27,8 @@
         [SerializeField] private Text scoreText;
         [SerializeField] private Text hiscoreText;
         [SerializeField] private Text livesText;
+
+        [SerializeField] private List<int> spaceGameScenes = new List<int> { 3, 4, 5 };
 
         // New UI panels and buttons for level-based flow.
         [SerializeField] private GameObject startPanel;    // Shows "Press Spacebar to Start"
