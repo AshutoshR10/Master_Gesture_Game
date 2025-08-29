@@ -117,8 +117,16 @@ public class NativeAPI
                     //ShowDebug("Key 4 pressed  Closed Game Over UI");
                     break;
                 case "5":
-                    GameManager.Instance.raiseHandPanel.SetActive(false); //Raise your healthy hand to begin! gesture to close panel 
-                    GameManager.Instance.StartLevel();
+                    if (GameManager.Instance.startPanel.activeSelf)
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        GameManager.Instance.raiseHandPanel.SetActive(false); //Raise your healthy hand to begin! gesture to close panel 
+                        GameManager.Instance.StartLevel();
+                    }
+                   
                     //ShowDebug("Key 5 pressed  Started Level (Raise Hand Closed)");
                     break;
                 case "6":

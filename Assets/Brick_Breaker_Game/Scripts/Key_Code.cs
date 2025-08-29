@@ -64,18 +64,21 @@ namespace BrickBreaker
                     Paddle.Instance.LeftMovement();
                     break;
                 case "23":
-                    PauseMenu.PauseGame();
+                    Paddle.Instance.RightMovement();         
                     break;
                 case "24":
-                    PauseMenu.ResumeGame();
+                    PauseMenu.PauseGame();
                     break;
                 case "25":
-                    PauseMenu.ReplayGame();
+                    PauseMenu.ResumeGame();
                     break;
                 case "26":
-                    PauseMenu.QuitGame();
+                    PauseMenu.ReplayGame();
                     break;
                 case "27":
+                    PauseMenu.QuitGame();
+                    break;
+                case "28":
                     GameManager.LoadNextLevel();
                     break;
             }

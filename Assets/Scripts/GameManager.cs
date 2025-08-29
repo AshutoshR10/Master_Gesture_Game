@@ -31,7 +31,7 @@
         [SerializeField] private List<int> spaceGameScenes = new List<int> { 3, 4, 5 };
 
         // New UI panels and buttons for level-based flow.
-        [SerializeField] private GameObject startPanel;    // Shows "Press Spacebar to Start"
+        [SerializeField] public GameObject startPanel;    // Shows "Press Spacebar to Start"
         [SerializeField] private GameObject restScreen;      // Level-end screen with buttons
         [SerializeField] private Button playAgainButton;     // Reloads current level
         [SerializeField] private Button nextLevelButton;       // Loads next level
@@ -258,7 +258,15 @@
         {
             // Hide start panel, show "Raise Hand" panel
             startPanel.SetActive(false);
-            raiseHandPanel.SetActive(true);
+            //raiseHandPanel.SetActive(true);
+            if (!isLevelActive)
+            {
+                raiseHandPanel.SetActive(true);
+            }
+            else
+            {
+                raiseHandPanel.SetActive(false);
+            }
             waitingForHand = true;
         }
         private bool HandIsRaised()
