@@ -394,7 +394,7 @@ MonoBehaviour:
   huText: {fileID: 953150598}
   respawnPoint: {fileID: 2047111818}
   player: {fileID: 527830928}
-  spawner: {fileID: 1058439605}
+  spawner: {fileID: 0}
   scoreText: {fileID: 1474871343}
   survivalScoreText: {fileID: 74662134}
   highScoreText: {fileID: 1079541966}
@@ -1760,55 +1760,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 953150596}
   m_CullTransparentMesh: 0
---- !u!1 &1058439604
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1058439606}
-  - component: {fileID: 1058439605}
-  m_Layer: 0
-  m_Name: Spawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1058439605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1058439604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 374f7314a96d6a04d91aa0f1f644322b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: -5845766125972383839, guid: c1db09ac3ccffc742bbc907d839e8f3a, type: 3}
-  spawnRate: 4
-  minHeight: -1
-  maxHeight: 2
-  verticalGap: 6
---- !u!4 &1058439606
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1058439604}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1079541963
 GameObject:
   m_ObjectHideFlags: 0
@@ -3276,7 +3227,6 @@ SceneRoots:
   - {fileID: 1949728353}
   - {fileID: 55615831}
   - {fileID: 527830925}
-  - {fileID: 1058439606}
   - {fileID: 1673819956}
   - {fileID: 311172547}
   - {fileID: 1703888227}
