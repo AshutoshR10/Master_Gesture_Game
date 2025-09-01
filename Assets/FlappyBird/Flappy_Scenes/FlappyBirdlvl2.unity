@@ -567,6 +567,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae79f9d99372a6b438f800230f434b9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _testScene: DINO
+  _testGesture: 33
   healthyUnhealthyPanel: {fileID: 1845123699}
   huText: {fileID: 421438602}
   respawnPoint: {fileID: 1765056985}
@@ -1257,11 +1259,11 @@ GameObject:
   - component: {fileID: 511178221}
   m_Layer: 5
   m_Name: L3
-  m_TagString: Untagged
+  m_TagString: OpenPalmUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &511178220
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1983,7 +1985,7 @@ GameObject:
   - component: {fileID: 926275470}
   m_Layer: 5
   m_Name: L1
-  m_TagString: Untagged
+  m_TagString: TwoFingerUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2442,7 +2444,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8015026552986656903, guid: 8c0a852e8400be747912c138f5877c94, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2672,11 +2674,11 @@ GameObject:
   - component: {fileID: 1549845467}
   m_Layer: 5
   m_Name: L2
-  m_TagString: Untagged
+  m_TagString: ThreeFingerUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1549845466
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3010,7 +3012,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 176048557980896639, guid: 38ecf1506379d1248a2ee60a2e504c02, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -17,11 +17,11 @@
     //    WaitingToStart,
     //    Playing,
     //    GameOver,
-    //    LevelComplete,
+    //    LevelComplete,b
     //    Paused
     //}
     [DefaultExecutionOrder(-100)]
-    public class GameManager : MonoBehaviour
+    public class GameManager : MasterGameManager
     {
         public enum GameState
         {
@@ -94,6 +94,8 @@
             //startPanel = GameObject.Find("Start");
 
             // Reset critical flags and references
+
+            FindGestureUIsByTag();
             initialGameStarted = false;
             isGameOver = false;
             levelCompleteTriggered = false;
@@ -106,6 +108,7 @@
             player.ResetState();
             // Reset UI state
             InitializeUI();
+            LoadGameGestures(lastGestureKey);
 
             Debug.Log($"Scene loaded: {scene.name}, GameState: {currentGameState}");
         }

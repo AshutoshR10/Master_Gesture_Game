@@ -270,11 +270,11 @@ GameObject:
   - component: {fileID: 188031721}
   m_Layer: 5
   m_Name: Flexion
-  m_TagString: Untagged
+  m_TagString: WristFlexionExtensionUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &188031720
 RectTransform:
   m_ObjectHideFlags: 0
@@ -455,6 +455,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 459f605e13eced949a32904be2fa0a25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _testScene: DINO
+  _testGesture: 33
   raiseHandPromptText: {fileID: 53802994}
   raiseHandPanel: {fileID: 1185185136}
   gameOverUI: {fileID: 698094701}
@@ -575,7 +577,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &542847353
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2232,11 +2234,11 @@ GameObject:
   - component: {fileID: 1620879867}
   m_Layer: 5
   m_Name: Radial_r
-  m_TagString: Untagged
+  m_TagString: WristRadialUlnarUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1620879866
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2633,11 +2635,11 @@ GameObject:
   - component: {fileID: 1686508349}
   m_Layer: 5
   m_Name: Ulnar_r
-  m_TagString: Untagged
+  m_TagString: WristRadialUlnarUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1686508348
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2870,7 +2872,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1737395389
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3088,11 +3090,11 @@ GameObject:
   - component: {fileID: 1993933469}
   m_Layer: 5
   m_Name: Extension
-  m_TagString: Untagged
+  m_TagString: WristFlexionExtensionUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1993933468
 RectTransform:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@
     using UnityEngine.UI;
 
     [DefaultExecutionOrder(-1)]
-    public class GameManager : MonoBehaviour
+    public class GameManager : MasterGameManager
     {
         public static GameManager Instance { get; private set; }
 
@@ -65,10 +65,22 @@
                 FindSceneReferences();
                 //StartCoroutine(GetPatientID());
             }
+
+            SceneManager.sceneLoaded += OnSceneLoaded;
+
+        }
+
+        void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            FindGestureUIsByTag();
+
+
+            LoadGameGestures(lastGestureKey);
         }
 
         private void OnDestroy()
         {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
             //if (Instance == this)
             //{
             //    Instance = null;
@@ -374,8 +386,12 @@
                 Debug.LogWarning("All levels completed");
                 return;
             }
+            
 
-            // Local method
+
+            
+
+           
             void OnSceneLoaded(Scene scene, LoadSceneMode mode)
             {
                 SceneManager.sceneLoaded -= OnSceneLoaded;
@@ -383,10 +399,16 @@
                 {
                     StartCoroutine(InitializeAfterSceneLoad());
                 }
+                FindGestureUIsByTag();
+
+
+                LoadGameGestures(lastGestureKey);
+
             }
 
             SceneManager.sceneLoaded += OnSceneLoaded;
             SceneManager.LoadScene($"Level{level}");
+           
         }
 
 

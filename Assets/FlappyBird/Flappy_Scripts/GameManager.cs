@@ -14,7 +14,7 @@
     using UnityEngine.VFX;
 
     [DefaultExecutionOrder(-1)]
-    public class GameManager : MonoBehaviour
+    public class GameManager : MasterGameManager
     {
         [SerializeField] public GameObject healthyUnhealthyPanel;
         [SerializeField] private TextMeshProUGUI huText;
@@ -27,7 +27,7 @@
         [SerializeField] private Text highScoreText;
         [SerializeField] private Text highSurvivalScoreText;
         [SerializeField] public GameObject playButton;
-        [SerializeField] private GameObject gameOver;
+        [SerializeField] public GameObject gameOver;
         [SerializeField] private Text pauseMessage; // UI text to show during pause
 
         // Rest screen UI elements
@@ -48,7 +48,11 @@
         public bool isGamePaused = true;  // Track whether the game is currently paused
         private bool initialGameStarted = false;
         private bool gameOverTriggered = false;
-        private int currentLevel;
+        //private int currentLevel;
+        private string current_Level;
+
+        //[SerializeField] private List<string> flappyGameScenes = new List<string> { "FlappyBirdlvl1", "FlappyBirdlvl2", "FlappyBirdlvl3" };
+
         public static string patientID = "Unknown";
         private TcpClient client;
         private NetworkStream stream;
@@ -67,14 +71,27 @@
                 Instance = this;
                 //StartCoroutine(GetPatientID());
             }
+
+            SceneManager.sceneLoaded += OnSceneLoaded;
+
+        }
+
+        void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            FindGestureUIsByTag();
+
+
+            LoadGameGestures(lastGestureKey);
         }
 
         private void OnDestroy()
         {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
             if (Instance == this)
             {
                 Instance = null;
             }
+
         }
 
         [System.Serializable]
@@ -195,13 +212,15 @@
             nextLevelButton.onClick.AddListener(LoadNextLevel);
 
             // Get current level
-            currentLevel = SceneManager.GetActiveScene().buildIndex;
+            //currentLevel = SceneManager.GetActiveScene().buildIndex;
+            current_Level = SceneManager.GetActiveScene().name;
+
             if (playButton.GetComponent<Button>() != null)
             {
                 playButton.GetComponent<Button>().onClick.AddListener(PlayButtonClick);
             }
 
-            if (currentLevel == 0)
+            if (current_Level == "FlappyBirdlvl1")
             {
                 survivalScoreText.gameObject.SetActive(true);
                 highSurvivalScoreText.gameObject.SetActive(true);
@@ -316,7 +335,7 @@
             }
 
             // Survival Time update
-            if (!isGamePaused && currentLevel == 0)
+            if (!isGamePaused && current_Level == "FlappyBirdlvl1")
             {
                 survivalTime = Time.time - startTime;
                 survivalScoreText.text = "Time: " + survivalTime.ToString("F1") + "s";
@@ -485,14 +504,14 @@
                 gameOverTriggered = true;
                 playButton.SetActive(true);
                 gameOver.SetActive(true);
-                if (currentLevel >= 1)
+                /*if (currentLevel >= 1)
                 {
                     SendGameData(patientID, currentLevel + 1, score);
                 }
                 else
                 {
                     SendGameData(patientID, currentLevel + 1, survivalTime);
-                }
+                }*/
 
                 // Update high scores before pausing
                 UpdateHighScores();
@@ -510,7 +529,13 @@
 
         public void IncreaseScore()
         {
-            if (currentLevel >= 1)  // Only increase score in levels after Level 1
+            /* if (currentLevel >= 1)  // Only increase score in levels after Level 1
+             {
+                 score++;
+                 scoreText.text = "Score: " + score;
+             }*/
+
+            if (current_Level != "FlappyBirdlvl1")
             {
                 score++;
                 scoreText.text = "Score: " + score;
@@ -533,7 +558,7 @@
             StopRecording();
             levelCompleteTriggered = true;
             gameOverTriggered = true;
-
+/*
             if (currentLevel >= 1)
             {
                 SendGameData(patientID, currentLevel + 1, score);
@@ -541,7 +566,7 @@
             else
             {
                 SendGameData(patientID, currentLevel + 1, survivalTime);
-            }
+            }*/
             Pause();
 
             restPanel.SetActive(true);
@@ -563,7 +588,7 @@
         public void LoadNextLevel()
         {
             first_UI = false;
-            currentLevel++;
+            //currentLevel++;
             Time.timeScale = 1f;
             //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
@@ -606,7 +631,7 @@
 
         private void UpdateHighScores()
         {
-            if (currentLevel == 0)
+            if (current_Level == "FlappyBirdlvl1")
             {
                 // Update high score for survival time in Level 1
                 if (survivalTime > highSurvivalTime)

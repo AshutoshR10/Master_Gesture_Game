@@ -421,6 +421,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3539906039410331791, guid: d729710e4092a7d4e98fc62e078728c3, type: 3}
+      propertyPath: m_TagString
+      value: ThreeFingerUI
+      objectReference: {fileID: 0}
     - target: {fileID: 6323540223163417912, guid: d729710e4092a7d4e98fc62e078728c3, type: 3}
       propertyPath: m_Name
       value: OpenPalm
@@ -428,6 +432,10 @@ PrefabInstance:
     - target: {fileID: 6323540223163417912, guid: d729710e4092a7d4e98fc62e078728c3, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6323540223163417912, guid: d729710e4092a7d4e98fc62e078728c3, type: 3}
+      propertyPath: m_TagString
+      value: OpenPalmUI
       objectReference: {fileID: 0}
     - target: {fileID: 8271959058588880496, guid: d729710e4092a7d4e98fc62e078728c3, type: 3}
       propertyPath: m_Name
@@ -437,6 +445,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8271959058588880496, guid: d729710e4092a7d4e98fc62e078728c3, type: 3}
+      propertyPath: m_TagString
+      value: ForearmPronationSupinationUI
+      objectReference: {fileID: 0}
     - target: {fileID: 8824572375707109731, guid: d729710e4092a7d4e98fc62e078728c3, type: 3}
       propertyPath: m_Name
       value: Supination
@@ -445,6 +457,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8824572375707109731, guid: d729710e4092a7d4e98fc62e078728c3, type: 3}
+      propertyPath: m_TagString
+      value: ForearmPronationSupinationUI
+      objectReference: {fileID: 0}
     - target: {fileID: 9021205275277073766, guid: d729710e4092a7d4e98fc62e078728c3, type: 3}
       propertyPath: m_Name
       value: TwoFingers
@@ -452,6 +468,10 @@ PrefabInstance:
     - target: {fileID: 9021205275277073766, guid: d729710e4092a7d4e98fc62e078728c3, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9021205275277073766, guid: d729710e4092a7d4e98fc62e078728c3, type: 3}
+      propertyPath: m_TagString
+      value: TwoFingerUI
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

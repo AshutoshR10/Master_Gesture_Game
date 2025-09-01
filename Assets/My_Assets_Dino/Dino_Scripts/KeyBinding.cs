@@ -211,7 +211,10 @@ using JetBrains.Annotations;
                 //AddDebug("GameManager not found!");
                 return;
             }
-
+            if (gameManager.gameOverText.isActiveAndEnabled)
+            {
+                gameManager.NewGame();
+            }
             // Handle start panel and game start
             if (gameManager.startPanel != null && gameManager.startPanel.activeSelf)
             {

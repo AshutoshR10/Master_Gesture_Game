@@ -1525,11 +1525,11 @@ GameObject:
   - component: {fileID: 659419562}
   m_Layer: 0
   m_Name: Radial_l
-  m_TagString: Untagged
+  m_TagString: WristRadialUlnarUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &659419561
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2616,11 +2616,11 @@ GameObject:
   - component: {fileID: 969333460}
   m_Layer: 0
   m_Name: Ulnar_r
-  m_TagString: Untagged
+  m_TagString: WristRadialUlnarUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &969333459
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2637,7 +2637,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 24, y: 45}
+  m_AnchoredPosition: {x: 23.99997, y: 45}
   m_SizeDelta: {x: 120, y: 110}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &969333460
@@ -2975,7 +2975,7 @@ GameObject:
   - component: {fileID: 1127969105}
   m_Layer: 0
   m_Name: Flexion
-  m_TagString: Untagged
+  m_TagString: WristFlexionExtensionUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3444,7 +3444,7 @@ GameObject:
   - component: {fileID: 1205747045}
   m_Layer: 0
   m_Name: Extension
-  m_TagString: Untagged
+  m_TagString: WristFlexionExtensionUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3943,11 +3943,11 @@ GameObject:
   - component: {fileID: 1499608406}
   m_Layer: 0
   m_Name: Radial_r
-  m_TagString: Untagged
+  m_TagString: WristRadialUlnarUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1499608405
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4601,11 +4601,11 @@ GameObject:
   - component: {fileID: 1696644244}
   m_Layer: 0
   m_Name: Ulnar_l
-  m_TagString: Untagged
+  m_TagString: WristRadialUlnarUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1696644243
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5114,7 +5114,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 121.79999, y: -5.350006}
+  m_AnchoredPosition: {x: 121.80005, y: -5.350006}
   m_SizeDelta: {x: 250, y: 100}
   m_Pivot: {x: 1, y: 1}
 --- !u!4 &1862789182 stripped
@@ -5465,6 +5465,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa6b1e99d01df174b8560f6cc2417735, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _testScene: DINO
+  _testGesture: 33
   startPanel: {fileID: 702031511}
   startPanelText: {fileID: 1989811554}
   restPanel: {fileID: 2141163474}

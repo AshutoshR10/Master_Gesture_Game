@@ -457,6 +457,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 459f605e13eced949a32904be2fa0a25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _testScene: DINO
+  _testGesture: 33
   raiseHandPromptText: {fileID: 2116583064}
   raiseHandPanel: {fileID: 887479382}
   gameOverUI: {fileID: 797358150}
@@ -696,11 +698,11 @@ GameObject:
   - component: {fileID: 483430392}
   m_Layer: 5
   m_Name: Extension
-  m_TagString: Untagged
+  m_TagString: WristFlexionExtensionUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &483430391
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1489,7 +1491,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &756342220
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1723,11 +1725,11 @@ GameObject:
   - component: {fileID: 843806925}
   m_Layer: 5
   m_Name: Flexion
-  m_TagString: Untagged
+  m_TagString: WristFlexionExtensionUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &843806924
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2240,7 +2242,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1033382736
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2461,11 +2463,11 @@ GameObject:
   - component: {fileID: 1162841420}
   m_Layer: 5
   m_Name: Radial_r
-  m_TagString: Untagged
+  m_TagString: WristRadialUlnarUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1162841419
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4147,11 +4149,11 @@ GameObject:
   - component: {fileID: 2043835115}
   m_Layer: 5
   m_Name: Ulnar_r
-  m_TagString: Untagged
+  m_TagString: WristRadialUlnarUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2043835114
 RectTransform:
   m_ObjectHideFlags: 0

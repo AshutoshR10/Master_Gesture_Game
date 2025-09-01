@@ -75,6 +75,7 @@ namespace Flappy
                     break;
 
 
+
             }
         }
 
@@ -88,6 +89,11 @@ namespace Flappy
             else
             {
                 player.Jump();
+            }
+
+            if (GameManager.Instance.gameOver.activeSelf)
+            {
+                GameManager.Instance.Play();
             }
 
             // Second priority: If play button is active, start the game

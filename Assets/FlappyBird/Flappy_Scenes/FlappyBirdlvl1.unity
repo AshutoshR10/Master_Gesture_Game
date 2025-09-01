@@ -390,6 +390,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae79f9d99372a6b438f800230f434b9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _testScene: DINO
+  _testGesture: 33
   healthyUnhealthyPanel: {fileID: 1702328188}
   huText: {fileID: 953150598}
   respawnPoint: {fileID: 2047111818}
@@ -1082,6 +1084,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1163,6 +1166,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!224 &521392399 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8015026552986656902, guid: 8c0a852e8400be747912c138f5877c94, type: 3}
@@ -1355,11 +1402,11 @@ GameObject:
   - component: {fileID: 568695491}
   m_Layer: 5
   m_Name: L2
-  m_TagString: Untagged
+  m_TagString: ThreeFingerUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &568695490
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1430,11 +1477,11 @@ GameObject:
   - component: {fileID: 732729935}
   m_Layer: 5
   m_Name: L3
-  m_TagString: Untagged
+  m_TagString: OpenPalmUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &732729934
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1868,7 +1915,7 @@ GameObject:
   - component: {fileID: 1097032053}
   m_Layer: 5
   m_Name: L1
-  m_TagString: Untagged
+  m_TagString: TwoFingerUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2898,7 +2945,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 176048557980896639, guid: 38ecf1506379d1248a2ee60a2e504c02, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 176048557980896639, guid: 38ecf1506379d1248a2ee60a2e504c02, type: 3}
+      propertyPath: m_TagString
+      value: OpenPalmUI
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3104,7 +3155,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8015026552986656903, guid: 8c0a852e8400be747912c138f5877c94, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015026552986656903, guid: 8c0a852e8400be747912c138f5877c94, type: 3}
+      propertyPath: m_TagString
+      value: ThreeFingerUI
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3210,6 +3265,10 @@ PrefabInstance:
     - target: {fileID: 8565922924778042845, guid: 92b48fa4c354cc543a45945de31fadcc, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8565922924778042845, guid: 92b48fa4c354cc543a45945de31fadcc, type: 3}
+      propertyPath: m_TagString
+      value: TwoFingerUI
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

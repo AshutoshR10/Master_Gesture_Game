@@ -13,7 +13,7 @@
     using UnityEngine.UI;
 
     [DefaultExecutionOrder(-1)]
-    public class GameManager : MonoBehaviour
+    public class GameManager : MasterGameManager
     {
         public static GameManager Instance { get; private set; }
 
@@ -55,7 +55,7 @@
         private NetworkStream stream;
         private bool isConnected = false;
         private bool first = true;
-
+        
         private void Awake()
         {
             if (Instance != null)
@@ -68,11 +68,24 @@
                 //StartCoroutine(GetPatientID());
             }
 
+            SceneManager.sceneLoaded += OnSceneLoaded;
+
+
+
+
+        }
+
+        void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            FindGestureUIsByTag();
+
+
+            LoadGameGestures(lastGestureKey);
         }
 
         private void OnDestroy()
         {
-
+            SceneManager.sceneLoaded -= OnSceneLoaded;
             if (Instance == this)
             {
                 Instance = null;

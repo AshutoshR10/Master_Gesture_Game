@@ -5,6 +5,17 @@ TagManager:
   serializedVersion: 3
   tags:
   - Obstacle
+  - Scoring
+  - Paddle
+  - Wall
+  - Ball
+  - Brick
+  - OpenPalmUI
+  - TwoFingerUI
+  - ThreeFingerUI
+  - WristRadialUlnarUI
+  - WristFlexionExtensionUI
+  - ForearmPronationSupinationUI
   layers:
   - Default
   - TransparentFX
