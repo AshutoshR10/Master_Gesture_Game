@@ -3854,11 +3854,11 @@ GameObject:
   - component: {fileID: 1319461430}
   m_Layer: 0
   m_Name: Ulnar_r
-  m_TagString: WristRadialUlnarUI
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1319461429
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5896,11 +5896,11 @@ GameObject:
   - component: {fileID: 2066659611}
   m_Layer: 0
   m_Name: Radial_r
-  m_TagString: WristRadialUlnarUI
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2066659610
 RectTransform:
   m_ObjectHideFlags: 0

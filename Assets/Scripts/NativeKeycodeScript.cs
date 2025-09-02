@@ -13,7 +13,7 @@ using JetBrains.Annotations;
 #endif
 
     using UnityEngine.Android;
-    using global::TMPro;
+    //using global::TMPro;
 
 #if UNITY_IOS
 public class NativeAPI
@@ -133,7 +133,7 @@ public class NativeAPI
                     pauseMenu.ReplayGame();
                     break;
                 case "7":
-                    pauseMenu.QuitGame();
+                    Application.Quit();
                     break;
                 case "8":
                     pauseMenu.ResumeGame();

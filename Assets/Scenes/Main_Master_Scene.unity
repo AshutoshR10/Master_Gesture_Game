@@ -384,8 +384,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 171835c23094e884faf855dd4fa44aa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _testScene: SPACE
-  _testGesture: 35
+  _testScene: BRICK
+  _testGesture: 34
 --- !u!1 &1182207611
 GameObject:
   m_ObjectHideFlags: 0
