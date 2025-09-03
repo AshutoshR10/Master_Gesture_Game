@@ -32,7 +32,7 @@
 
         // New UI panels and buttons for level-based flow.
         [SerializeField] public GameObject startPanel;    // Shows "Press Spacebar to Start"
-        [SerializeField] private GameObject restScreen;      // Level-end screen with buttons
+        [SerializeField] public GameObject restScreen;      // Level-end screen with buttons
         [SerializeField] private Button playAgainButton;     // Reloads current level
         [SerializeField] private Button nextLevelButton;       // Loads next level
 

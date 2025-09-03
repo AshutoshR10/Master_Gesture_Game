@@ -108,12 +108,19 @@ public class NativeAPI
                     break;
 
                 case "4":
+                    if (GameManager.Instance.restScreen.activeSelf)
+                    {
+                        return;
+                    }
+
                     //GameManager.Instance.gameOverUI.SetActive(false); //spacebar close first gesture
                     if (GameManager.Instance != null)
                     {
                         //GameManager.Instance.gameOverUI.SetActive(false);
                         GameManager.Instance.GameStart();
                     }
+
+                   
                     //ShowDebug("Key 4 pressed  Closed Game Over UI");
                     break;
                 case "5":
