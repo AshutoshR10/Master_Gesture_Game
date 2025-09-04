@@ -30,7 +30,7 @@
         private float timeLeft = 120f;
         private bool isPaused = true; // Game starts paused until Spacebar is pressed
         private bool levelCompleteTriggered = false;
-        private bool gameStarted = false; // Ensures Start Panel logic
+        public bool gameStarted = false; // Ensures Start Panel logic
         private static bool isFirstStart = true; // Track if this is the first start
 
         // UI Elements

@@ -42,20 +42,22 @@
             {
                 direction = Vector2.right;
             }
-            else
+            else 
             {
                 direction = Vector2.zero;
             }
         }
-
+        //private bool isNativeMoving = false;
         public void LeftMovement()
         {
             direction = Vector2.left;
+            //isNativeMoving = true;
         }
 
         public void RightMovement()
         {
             direction = Vector2.right;
+            //isNativeMoving = true;
         }
 
         private void FixedUpdate()
@@ -65,6 +67,8 @@
                 rb.AddForce(direction * speed);
             }
         }
+
+       
 
         private void OnCollisionEnter2D(Collision2D collision)
         {

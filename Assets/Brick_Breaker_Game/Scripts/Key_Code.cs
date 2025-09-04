@@ -58,13 +58,28 @@ namespace BrickBreaker
             switch (Keycode)
             {
                 case "21"://GameStart
-                    GameManager.Instance.GameStartKey();
+                    //GameManager.Instance.GameStartKey();
                     break;
                 case "22":
-                    Paddle.Instance.LeftMovement();
+                    if (!GameManager.Instance.gameStarted)
+                    {
+                        GameManager.Instance.GameStartKey();
+                    }
+                    else
+                    {
+                        Paddle.Instance.LeftMovement();
+                    }
                     break;
                 case "23":
-                    Paddle.Instance.RightMovement();         
+                    if (!GameManager.Instance.gameStarted)
+                    {
+                        GameManager.Instance.GameStartKey();
+                    }
+                    else
+                    {
+                        Paddle.Instance.RightMovement();
+                    }
+
                     break;
                 case "24":
                     PauseMenu.PauseGame();

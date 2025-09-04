@@ -1523,6 +1523,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _testScene: DINO
   _testGesture: 33
+  gameStarted: 0
   startPanel: {fileID: 1980963106}
   startPanelText: {fileID: 1735321175}
   restPanel: {fileID: 505797333}
@@ -2567,7 +2568,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 21
+          m_StringArgument: 23
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &867698497
@@ -3646,7 +3647,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 121.80005, y: -5.350006}
+  m_AnchoredPosition: {x: 121.80008, y: -5.350006}
   m_SizeDelta: {x: 250, y: 100}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1385669650

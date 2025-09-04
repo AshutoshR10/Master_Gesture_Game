@@ -272,15 +272,18 @@
             // Hide start panel, show "Raise Hand" panel
             startPanel.SetActive(false);
             //raiseHandPanel.SetActive(true);
-            if (!isLevelActive)
+            /*if (!isLevelActive)
             {
                 raiseHandPanel.SetActive(true);
             }
             else
             {
                 raiseHandPanel.SetActive(false);
-            }
+            }*/
+
+            
             waitingForHand = true;
+            StartLevel();
         }
         private bool HandIsRaised()
         {
