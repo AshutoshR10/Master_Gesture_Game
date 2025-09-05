@@ -52,6 +52,7 @@ public class NativeAPI
             //player = FindFirstObjectByType<Player>(); // reacquire the new player
             //FindAndCacheReferences();
             StartCoroutine(WaitAndFindRef(scene.name));
+            FindRef();
         }
 
         void OnDestroy()

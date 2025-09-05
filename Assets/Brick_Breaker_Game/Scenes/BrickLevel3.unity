@@ -910,7 +910,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 121.80005, y: -5.350006}
+  m_AnchoredPosition: {x: 121.80002, y: -5.350006}
   m_SizeDelta: {x: 250, y: 100}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &458273235
@@ -3739,6 +3739,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _testScene: DINO
   _testGesture: 33
+  gameStarted: 0
   startPanel: {fileID: 1051997484}
   startPanelText: {fileID: 1051997485}
   restPanel: {fileID: 3321665241714924680}
@@ -5638,6 +5639,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aed25787edbc88498dc312f557143d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PauseMenu: {fileID: 1010265902}
 --- !u!4 &1984013562
 Transform:
   m_ObjectHideFlags: 0

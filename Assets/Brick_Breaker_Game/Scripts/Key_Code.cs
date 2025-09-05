@@ -10,7 +10,7 @@ namespace BrickBreaker
         public static Key_Code Instance;
         private GameManager GameManager;
 
-        private PauseMenu PauseMenu;
+        public PauseMenu PauseMenu;
         private Paddle paddle;
 
 
@@ -19,6 +19,8 @@ namespace BrickBreaker
             //player = FindFirstObjectByType<Player>(); // reacquire the new player
             //FindAndCacheReferences();
             StartCoroutine(DeferredCacheBrick(scene.name));
+
+            FinfRefBrick();
         }
 
         void OnDestroy()
@@ -51,6 +53,8 @@ namespace BrickBreaker
             GameManager = gameObject.GetComponent<GameManager>();
             paddle = gameObject.GetComponent<Paddle>();
             PauseMenu = gameObject.GetComponent<PauseMenu>();
+
+            PauseMenu = FindFirstObjectByType<PauseMenu>();
         }
 
         public void KeyCodeNative(string Keycode)

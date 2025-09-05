@@ -21,6 +21,8 @@ namespace Flappy
             //player = FindFirstObjectByType<Player>(); // reacquire the new player
             //FindAndCacheReferences();
             StartCoroutine(DeferredCacheFlappy(scene.name));
+
+            FindReferance();
         }
 
         void OnDestroy()
@@ -50,6 +52,8 @@ namespace Flappy
             player = FindFirstObjectByType<Player>();
             GameManager = gameObject.GetComponent<GameManager>();
             pauseMenu = gameObject.GetComponent<PauseMenu>();
+
+            pauseMenu = FindFirstObjectByType<PauseMenu>();
         }
         public void NativeKeyCodes(string Keycode)
         {
@@ -59,7 +63,7 @@ namespace Flappy
                     HandleKey15();
                     break;
                 case "16":
-                    pauseMenu.PauseGame();
+                        pauseMenu.PauseGame();
                     break;
                 case "17":
                     pauseMenu.ResumeGame();

@@ -2773,7 +2773,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 23.99997, y: 45}
+  m_AnchoredPosition: {x: 24, y: 45}
   m_SizeDelta: {x: 120, y: 110}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &969333460
@@ -3853,7 +3853,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 22
+          m_StringArgument: 24
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1246612042
@@ -4438,6 +4438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aed25787edbc88498dc312f557143d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PauseMenu: {fileID: 836622365}
 --- !u!4 &1445167248
 Transform:
   m_ObjectHideFlags: 0
