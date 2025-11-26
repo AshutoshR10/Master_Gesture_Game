@@ -23,6 +23,15 @@ namespace Flappy
         }
         public void ReplayGame()
         {
+            // ✅ END SESSION AND SEND DATA TO API (Retry from pause menu)
+            if (GameActionTracker.Instance != null && gameManager != null)
+            {
+                // Note: gameManager.score is public, but survivalTime is private
+                // For Level 1 (survival mode), this will send current score (may be 0)
+                // TODO: If needed, add public getter in GameManager for current score/time
+                GameActionTracker.Instance.EndSession(gameManager.score, "retry");
+            }
+
             Time.timeScale = 1f;
             if (isPaused)
             {

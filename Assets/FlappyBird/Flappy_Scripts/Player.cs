@@ -95,6 +95,12 @@
         public void Jump()
         {
             direction = Vector3.up * strength;
+
+            // ✅ RECORD FLAP ACTION
+            if (GameActionTracker.Instance != null)
+            {
+                GameActionTracker.Instance.RecordAction("flap");
+            }
         }
         private void AnimateSprite()
         {

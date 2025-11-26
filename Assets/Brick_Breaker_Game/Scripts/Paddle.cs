@@ -52,12 +52,24 @@
         {
             direction = Vector2.left;
             //isNativeMoving = true;
+
+            // ✅ RECORD MOVE LEFT ACTION
+            if (GameActionTracker.Instance != null)
+            {
+                GameActionTracker.Instance.RecordAction("move_left");
+            }
         }
 
         public void RightMovement()
         {
             direction = Vector2.right;
             //isNativeMoving = true;
+
+            // ✅ RECORD MOVE RIGHT ACTION
+            if (GameActionTracker.Instance != null)
+            {
+                GameActionTracker.Instance.RecordAction("move_right");
+            }
         }
 
         private void FixedUpdate()

@@ -193,6 +193,13 @@
         {
             // This will be called when the application is about to close
             Debug.Log("Application quitting - stopping recording");
+
+            // ✅ END SESSION AND SEND DATA TO API (Exit)
+            if (GameActionTracker.Instance != null && currentGameState == GameState.Playing)
+            {
+                GameActionTracker.Instance.EndSession((int)score, "exit");
+            }
+
             StopRecording();
 
             // Add a small delay to ensure message is sent before closing
@@ -381,6 +388,12 @@
             if (retryButton != null)
                 retryButton.gameObject.SetActive(false);
             Input.ResetInputAxes();
+
+            // ✅ START TRACKING SESSION
+            if (GameActionTracker.Instance != null)
+            {
+                GameActionTracker.Instance.StartSession("DINO");
+            }
         }
 
 
@@ -411,6 +424,12 @@
 
             UpdateHiscore();
             initialGameStarted = false;
+
+            // ✅ END SESSION AND SEND DATA TO API
+            if (GameActionTracker.Instance != null)
+            {
+                GameActionTracker.Instance.EndSession((int)score, "lose");
+            }
 
             //Debug.Log("GameOver() called - starting retry input handler");
 
@@ -478,6 +497,12 @@
             if (retryButton != null)
                 retryButton.gameObject.SetActive(false);
 
+            // ✅ END SESSION AND SEND DATA TO API
+            if (GameActionTracker.Instance != null)
+            {
+                GameActionTracker.Instance.EndSession((int)score, "completed");
+            }
+
             // Activate the rest screen panel.
             if (restPanel != null)
             {
@@ -504,6 +529,13 @@
         {
             //Debug.Log("PlayAgain() called - starting scene reload...");
             //float startTime = Time.realtimeSinceStartup;
+
+            // ✅ END SESSION AND SEND DATA TO API (Retry)
+            if (GameActionTracker.Instance != null)
+            {
+                GameActionTracker.Instance.EndSession((int)score, "retry");
+            }
+
             Time.timeScale = 1f;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
@@ -513,6 +545,12 @@
         // Method to load the next level.
         public void LoadNextLevel()
         {
+            // ✅ SAFETY CHECK: End session before loading next level (if not already ended)
+            if (GameActionTracker.Instance != null)
+            {
+                GameActionTracker.Instance.EndSession((int)score, "completed");
+            }
+
             Time.timeScale = 1f;
             ResumeRecording();
             //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);

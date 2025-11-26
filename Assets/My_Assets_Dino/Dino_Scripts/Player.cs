@@ -54,7 +54,7 @@ namespace Dino
                      direction = Vector3.up * jumpForce;
                  }*/
 
-                /*if (Input.GetMouseButtonDown(0))
+               /* if (Input.GetMouseButtonDown(0))
                 {
                     Jump();
                 }*/
@@ -85,6 +85,12 @@ namespace Dino
             {
                 direction = Vector3.up * jumpForce;
                 KeyBinding.Instance?.AddDebug("Jump Success!");
+
+                // ✅ RECORD JUMP ACTION
+                if (GameActionTracker.Instance != null)
+                {
+                    GameActionTracker.Instance.RecordAction("jump");
+                }
             }
             else
             {

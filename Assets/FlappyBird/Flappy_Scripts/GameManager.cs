@@ -126,6 +126,14 @@
         {
             // This will be called when the application is about to close
             Debug.Log("Application quitting - stopping recording");
+
+            // ✅ END SESSION AND SEND DATA TO API (Exit)
+            if (GameActionTracker.Instance != null && !isGamePaused)
+            {
+                int finalScore = (current_Level == "FlappyBirdlvl1") ? (int)survivalTime : score;
+                GameActionTracker.Instance.EndSession(finalScore, "exit");
+            }
+
             StopRecording();
 
             // Add a small delay to ensure message is sent before closing
@@ -460,6 +468,12 @@
             isGamePaused = false;
 
             if (pauseMessage != null) pauseMessage.enabled = false;
+
+            // ✅ START TRACKING SESSION
+            if (GameActionTracker.Instance != null)
+            {
+                GameActionTracker.Instance.StartSession("FLAPPY");
+            }
         }
 
         // Add this new method after Play()
@@ -515,6 +529,13 @@
 
                 // Update high scores before pausing
                 UpdateHighScores();
+
+                // ✅ END SESSION AND SEND DATA TO API
+                if (GameActionTracker.Instance != null)
+                {
+                    int finalScore = (current_Level == "FlappyBirdlvl1") ? (int)survivalTime : score;
+                    GameActionTracker.Instance.EndSession(finalScore, "lose");
+                }
 
                 Pause();
                 //StartCoroutine(RestartGameAfterDelay());
@@ -577,16 +598,37 @@
             if (pauseMessage != null) pauseMessage.enabled = false;
 
             UpdateHighScores();
+
+            // ✅ END SESSION AND SEND DATA TO API
+            if (GameActionTracker.Instance != null)
+            {
+                int finalScore = (current_Level == "FlappyBirdlvl1") ? (int)survivalTime : score;
+                GameActionTracker.Instance.EndSession(finalScore, "completed");
+            }
         }
 
         public void PlayAgain()
         {
+            // ✅ END SESSION AND SEND DATA TO API (Retry)
+            if (GameActionTracker.Instance != null)
+            {
+                int finalScore = (current_Level == "FlappyBirdlvl1") ? (int)survivalTime : score;
+                GameActionTracker.Instance.EndSession(finalScore, "retry");
+            }
+
             first_UI = false;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
         public void LoadNextLevel()
         {
+            // ✅ SAFETY CHECK: End session before loading next level (if not already ended)
+            if (GameActionTracker.Instance != null)
+            {
+                int finalScore = (current_Level == "FlappyBirdlvl1") ? (int)survivalTime : score;
+                GameActionTracker.Instance.EndSession(finalScore, "completed");
+            }
+
             first_UI = false;
             //currentLevel++;
             Time.timeScale = 1f;

@@ -33,6 +33,12 @@ namespace Dino
 
         public void ReplayGame()
         {
+            // ✅ END SESSION AND SEND DATA TO API (Retry from pause menu)
+            if (GameActionTracker.Instance != null && gameManager != null)
+            {
+                GameActionTracker.Instance.EndSession((int)gameManager.Score, "retry");
+            }
+
             /*Time.timeScale = 1f;
             if (isPaused)
             {

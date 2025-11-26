@@ -119,6 +119,13 @@
         {
             // This will be called when the application is about to close
             Debug.Log("Application quitting - stopping recording");
+
+            // ✅ END SESSION AND SEND DATA TO API (Exit)
+            if (GameActionTracker.Instance != null && gameStarted && !isPaused)
+            {
+                GameActionTracker.Instance.EndSession(score, "exit");
+            }
+
             StopRecording();
 
             // Add a small delay to ensure message is sent before closing
@@ -349,6 +356,12 @@
                 isFirstStart = false;
             }
 
+            // ✅ START TRACKING SESSION
+            if (GameActionTracker.Instance != null)
+            {
+                GameActionTracker.Instance.StartSession("BRICK");
+            }
+
             StartCoroutine(LevelTimerCoroutine());
         }
 
@@ -530,7 +543,14 @@
         {
             UpdateHiscore();
             int level = SceneManager.GetActiveScene().buildIndex;
-            SendGameData(patientID, level + 1, score);
+            // SendGameData(patientID, level + 1, score); // ⚠️ OLD CODE - Commented out, GameActionTracker handles API calls now
+
+            // ✅ END SESSION AND SEND DATA TO API
+            if (GameActionTracker.Instance != null)
+            {
+                GameActionTracker.Instance.EndSession(score, "lose");
+            }
+
             NewGame();
         }
 
@@ -614,12 +634,18 @@
             StopRecording();
             UpdateHiscore();
             int level = SceneManager.GetActiveScene().buildIndex;
-            SendGameData(patientID, level + 1, score);
+            // SendGameData(patientID, level + 1, score); // ⚠️ OLD CODE - Commented out, GameActionTracker handles API calls now
             levelCompleteTriggered = true;
 
             // Stop gameplay and show the rest panel
             if (ball != null) ball.gameObject.SetActive(false);
             if (paddle != null) paddle.gameObject.SetActive(false);
+
+            // ✅ END SESSION AND SEND DATA TO API
+            if (GameActionTracker.Instance != null)
+            {
+                GameActionTracker.Instance.EndSession(score, "completed");
+            }
 
             restPanel.SetActive(true);
             // restMessageText.text = "Time's up! Choose an option to continue.";
@@ -627,6 +653,12 @@
 
         public void PlayAgain()
         {
+            // ✅ END SESSION AND SEND DATA TO API (Retry)
+            if (GameActionTracker.Instance != null)
+            {
+                GameActionTracker.Instance.EndSession(score, "retry");
+            }
+
             // Reset game state variables
             levelCompleteTriggered = false;
             gameStarted = false;
@@ -699,6 +731,12 @@
         //}
         public void LoadNextLevel()
         {
+            // ✅ SAFETY CHECK: End session before loading next level (if not already ended)
+            if (GameActionTracker.Instance != null)
+            {
+                GameActionTracker.Instance.EndSession(score, "completed");
+            }
+
             Time.timeScale = 1f;
             /*int currentBuildIndex = SceneManager.GetActiveScene().buildIndex;
             int nextBuildIndex = currentBuildIndex + 1;

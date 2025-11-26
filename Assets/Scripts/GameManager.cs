@@ -124,6 +124,13 @@
         {
             // This will be called when the application is about to close
             Debug.Log("Application quitting - stopping recording");
+
+            // ✅ END SESSION AND SEND DATA TO API (Exit)
+            if (GameActionTracker.Instance != null && isLevelActive)
+            {
+                GameActionTracker.Instance.EndSession(score, "exit");
+            }
+
             StopRecording();
 
             // Add a small delay to ensure message is sent before closing
@@ -361,6 +368,12 @@
             Time.timeScale = 1f;   // Resume game
             isLevelActive = true;
             invaders.gameObject.SetActive(true);
+
+            // ✅ START TRACKING SESSION
+            if (GameActionTracker.Instance != null)
+            {
+                GameActionTracker.Instance.StartSession("SPACE");
+            }
         }
 
         private void Respawn()
@@ -386,8 +399,14 @@
             if (invaders != null)
                 invaders.gameObject.SetActive(false);
             int level = SceneManager.GetActiveScene().buildIndex;
-            SendGameData(patientID, level + 1, score);
+            // SendGameData(patientID, level + 1, score); // ⚠️ OLD CODE - Commented out, GameActionTracker handles API calls now
             UpdateHiscore();
+
+            // ✅ END SESSION AND SEND DATA TO API
+            if (GameActionTracker.Instance != null)
+            {
+                GameActionTracker.Instance.EndSession(score, "completed");
+            }
         }
 
         private void GameOver()
@@ -397,8 +416,14 @@
             if (invaders != null)
                 invaders.gameObject.SetActive(false);
             int level = SceneManager.GetActiveScene().buildIndex;
-            SendGameData(patientID, level + 1, score);
+            // SendGameData(patientID, level + 1, score); // ⚠️ OLD CODE - Commented out, GameActionTracker handles API calls now
             UpdateHiscore();
+
+            // ✅ END SESSION AND SEND DATA TO API
+            if (GameActionTracker.Instance != null)
+            {
+                GameActionTracker.Instance.EndSession(score, "lose");
+            }
         }
 
         private void SetScore(int score)
@@ -463,12 +488,24 @@
 
         public void PlayAgain()
         {
+            // ✅ END SESSION AND SEND DATA TO API (Retry)
+            if (GameActionTracker.Instance != null)
+            {
+                GameActionTracker.Instance.EndSession(score, "retry");
+            }
+
             Time.timeScale = 1f;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
         public void NextLevel()
         {
+            // ✅ SAFETY CHECK: End session before loading next level (if not already ended)
+            if (GameActionTracker.Instance != null)
+            {
+                GameActionTracker.Instance.EndSession(score, "completed");
+            }
+
             Time.timeScale = 1f;
             //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;

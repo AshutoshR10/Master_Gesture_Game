@@ -63,12 +63,24 @@ namespace Space
         {
             Vector2 movement = Vector2.left * speed * Time.fixedDeltaTime;
             rb.MovePosition(rb.position + movement);
+
+            // ✅ RECORD MOVE LEFT ACTION
+            if (GameActionTracker.Instance != null)
+            {
+                GameActionTracker.Instance.RecordAction("move_left");
+            }
         }
 
         public void MoveRight()
         {
             Vector2 movement = Vector2.right * speed * Time.fixedDeltaTime;
             rb.MovePosition(rb.position + movement);
+
+            // ✅ RECORD MOVE RIGHT ACTION
+            if (GameActionTracker.Instance != null)
+            {
+                GameActionTracker.Instance.RecordAction("move_right");
+            }
         }
         void FireLaser()
         {
