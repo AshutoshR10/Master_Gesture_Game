@@ -94,6 +94,12 @@ public class MasterGameManager : MonoBehaviour
     public static string userToken = "";
     private static bool tokenInitialized = false;
 
+    // ========================
+    // API URL MANAGEMENT
+    // ========================
+    public static string apiUrl = "";
+    private static bool apiUrlInitialized = false;
+
     /// <summary>
     /// Set authorization token from Android/external source
     /// Call this method when receiving token from Android app
@@ -210,6 +216,126 @@ public class MasterGameManager : MonoBehaviour
         Debug.Log("UnityReceiver : [MasterGameManager] ========================================");
     }
 
+    // ========================
+    // API URL MANAGEMENT METHODS
+    // ========================
+
+    /// <summary>
+    /// Set API URL from Android/external source
+    /// Call this method when receiving API URL from Android app
+    /// </summary>
+    /// <param name="url">API endpoint URL for game data submission</param>
+    public void SetApiUrl(string url)
+    {
+        if (string.IsNullOrEmpty(url))
+        {
+            Debug.LogError("UnityReceiver : [MasterGameManager] ❌ ERROR: Attempted to set empty/null API URL!");
+            Debug.LogError("UnityReceiver : [MasterGameManager] API URL was NOT updated. Please provide a valid URL.");
+            return;
+        }
+
+        // Check if this is a URL change
+        bool isUrlChange = !string.IsNullOrEmpty(apiUrl) && apiUrl != url;
+
+        if (isUrlChange)
+        {
+            Debug.Log("UnityReceiver : [MasterGameManager] ========================================");
+            Debug.Log("UnityReceiver : [MasterGameManager] 🔄 API URL CHANGE DETECTED");
+            Debug.Log("UnityReceiver : [MasterGameManager] ========================================");
+            Debug.Log($"UnityReceiver : [MasterGameManager] Old URL: {apiUrl}");
+            Debug.Log($"UnityReceiver : [MasterGameManager] New URL: {url}");
+        }
+
+        // Update API URL
+        apiUrl = url;
+        apiUrlInitialized = true;
+
+        // Save to PlayerPrefs for persistence across app restarts
+        PlayerPrefs.SetString("ApiUrl", url);
+        PlayerPrefs.Save();
+
+        if (isUrlChange)
+        {
+            Debug.Log("UnityReceiver : [MasterGameManager] ✅ API URL UPDATED SUCCESSFULLY");
+            Debug.Log("UnityReceiver : [MasterGameManager] All future API calls will use the new URL.");
+            Debug.Log("UnityReceiver : [MasterGameManager] ========================================");
+        }
+        else
+        {
+            Debug.Log("UnityReceiver : [MasterGameManager] ========================================");
+            Debug.Log("UnityReceiver : [MasterGameManager] ✅ API URL SAVED");
+            Debug.Log("UnityReceiver : [MasterGameManager] ========================================");
+            Debug.Log($"UnityReceiver : [MasterGameManager] URL: {url}");
+            Debug.Log("UnityReceiver : [MasterGameManager] URL saved to memory and PlayerPrefs");
+            Debug.Log("UnityReceiver : [MasterGameManager] ✅ Ready to make API calls");
+            Debug.Log("UnityReceiver : [MasterGameManager] ========================================");
+        }
+    }
+
+    /// <summary>
+    /// Get the current API URL
+    /// </summary>
+    /// <returns>Current API URL or empty string if not set</returns>
+    public static string GetApiUrl()
+    {
+        if (string.IsNullOrEmpty(apiUrl))
+        {
+            Debug.LogWarning("UnityReceiver : [MasterGameManager] ⚠️ API URL requested but not set. Checking PlayerPrefs...");
+
+            // Try to load from PlayerPrefs
+            string savedUrl = PlayerPrefs.GetString("ApiUrl", "");
+            if (!string.IsNullOrEmpty(savedUrl))
+            {
+                apiUrl = savedUrl;
+                apiUrlInitialized = true;
+                Debug.Log("UnityReceiver : [MasterGameManager] ✅ API URL restored from PlayerPrefs");
+                Debug.Log($"UnityReceiver : [MasterGameManager] URL: {savedUrl}");
+            }
+            else
+            {
+                Debug.LogWarning("UnityReceiver : [MasterGameManager] ⚠️ No API URL found in PlayerPrefs either.");
+            }
+        }
+
+        return apiUrl;
+    }
+
+    /// <summary>
+    /// Clear the API URL
+    /// </summary>
+    public void ClearApiUrl()
+    {
+        Debug.Log("UnityReceiver : [MasterGameManager] ========================================");
+        Debug.Log("UnityReceiver : [MasterGameManager] 🗑️ CLEARING API URL");
+        Debug.Log("UnityReceiver : [MasterGameManager] ========================================");
+
+        apiUrl = "";
+        apiUrlInitialized = false;
+        PlayerPrefs.DeleteKey("ApiUrl");
+        PlayerPrefs.Save();
+
+        Debug.Log("UnityReceiver : [MasterGameManager] ✅ API URL cleared from memory and PlayerPrefs");
+        Debug.Log("UnityReceiver : [MasterGameManager] ========================================");
+    }
+
+    /// <summary>
+    /// Load API URL from PlayerPrefs on app start (if exists)
+    /// </summary>
+    private void LoadApiUrlFromStorage()
+    {
+        if (!apiUrlInitialized && string.IsNullOrEmpty(apiUrl))
+        {
+            string savedUrl = PlayerPrefs.GetString("ApiUrl", "");
+            if (!string.IsNullOrEmpty(savedUrl))
+            {
+                apiUrl = savedUrl;
+                apiUrlInitialized = true;
+                Debug.Log("UnityReceiver : [MasterGameManager] ✅ API URL restored from previous session");
+                Debug.Log($"UnityReceiver : [MasterGameManager] URL: {savedUrl}");
+            }
+        }
+    }
+
     /// <summary>
     /// Load token from PlayerPrefs on app start (if exists)
     /// Call this in Awake() or Start()
@@ -231,8 +357,9 @@ public class MasterGameManager : MonoBehaviour
 
     private void Awake()
     {
-        // Try to load token from storage on app start
+        // Try to load token and API URL from storage on app start
         LoadTokenFromStorage();
+        LoadApiUrlFromStorage();
         //Debug.unityLogger.logEnabled = false;
     }
 

@@ -24,7 +24,25 @@ public class GameOverAPI : MonoBehaviour
     }
     public IEnumerator SubmitGameProgress(string gameId, string gameProgress, int gameScore, string gameResult)
     {
-        string url = "https://0f466951ce86.ngrok-free.app/api/game/save";
+        // ✅ Get API URL from MasterGameManager (with automatic fallback to storage)
+        string url = MasterGameManager.GetApiUrl();
+
+        // Check if API URL exists - FAIL if not provided by Android
+        if (string.IsNullOrEmpty(url))
+        {
+            Debug.LogError("UnityReceiver : [GameOverAPI] ========================================");
+            Debug.LogError("UnityReceiver : [GameOverAPI] ❌ FATAL ERROR: NO API URL SET");
+            Debug.LogError("UnityReceiver : [GameOverAPI] ========================================");
+            Debug.LogError("UnityReceiver : [GameOverAPI] Android MUST send API URL via:");
+            Debug.LogError("UnityReceiver : [GameOverAPI] UnityPlayer.UnitySendMessage('MasterGameManager', 'SetApiUrl', url)");
+            Debug.LogError("UnityReceiver : [GameOverAPI] API submission ABORTED - No URL available");
+            Debug.LogError("UnityReceiver : [GameOverAPI] ========================================");
+            yield break; // Stop execution - cannot proceed without URL
+        }
+
+        Debug.Log("UnityReceiver : [GameOverAPI] ========================================");
+        Debug.Log($"UnityReceiver : [GameOverAPI] ✅ Using API URL: {url}");
+        Debug.Log("UnityReceiver : [GameOverAPI] ========================================");
 
         // ✅ Get token from MasterGameManager (with automatic fallback to storage)
         string token = MasterGameManager.GetToken();
