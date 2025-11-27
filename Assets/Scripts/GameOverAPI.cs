@@ -24,26 +24,44 @@ public class GameOverAPI : MonoBehaviour
     }
     public IEnumerator SubmitGameProgress(string gameId, string gameProgress, int gameScore, string gameResult)
     {
-        string url = "http://145.223.23.182:5005/api/game/save";
+        string url = "https://0f466951ce86.ngrok-free.app/api/game/save";
 
         // ✅ Get token from MasterGameManager (with automatic fallback to storage)
         string token = MasterGameManager.GetToken();
 
-        // If token is still empty, use the developer-provided token for testing
+        // Check if token exists - FAIL if not provided by Android
         if (string.IsNullOrEmpty(token))
         {
-            // Temporary token for testing (provided by developer)
-            token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MWVjMGJiMjVkZGI3YjQ4NGE0NTJkZiIsImlhdCI6MTc2NDE0NjMxNywiZXhwIjoxNzY0MjMyNzE3fQ.bOdrPcr1GK8VMZV-ClUZbrQu9D4XERrEII4ndWBAX8g";
-            Debug.LogWarning("[GameOverAPI] ========================================");
-            Debug.LogWarning("[GameOverAPI] ⚠️ NO USER TOKEN FOUND");
-            Debug.LogWarning("[GameOverAPI] Using fallback test token for development");
-            Debug.LogWarning("[GameOverAPI] Production should set token via MasterGameManager.Authorization()");
-            Debug.LogWarning("[GameOverAPI] ========================================");
+            Debug.LogError("UnityReceiver : [GameOverAPI] ========================================");
+            Debug.LogError("UnityReceiver : [GameOverAPI] ❌ FATAL ERROR: NO AUTHORIZATION TOKEN");
+            Debug.LogError("UnityReceiver : [GameOverAPI] ========================================");
+            Debug.LogError("UnityReceiver : [GameOverAPI] Android MUST send token via:");
+            Debug.LogError("UnityReceiver : [GameOverAPI] UnityPlayer.UnitySendMessage('MasterGameManager', 'Authorization', token)");
+            Debug.LogError("UnityReceiver : [GameOverAPI] API submission ABORTED - No token available");
+            Debug.LogError("UnityReceiver : [GameOverAPI] ========================================");
+            yield break; // Stop execution - cannot proceed without token
         }
-        else
-        {
-            Debug.Log($"[GameOverAPI] ✅ Using authenticated token (first 50 chars): {token.Substring(0, Mathf.Min(50, token.Length))}...");
-        }
+
+        Debug.Log("UnityReceiver : [GameOverAPI] ========================================");
+        Debug.Log($"UnityReceiver : [GameOverAPI] ✅ Using authenticated token (first 50 chars): {token.Substring(0, Mathf.Min(50, token.Length))}...");
+        Debug.Log($"UnityReceiver : [GameOverAPI] Token length: {token.Length} characters");
+        Debug.Log("UnityReceiver : [GameOverAPI] ========================================");
+
+        // If token is still empty, use the developer-provided token for testing
+        // if (string.IsNullOrEmpty(token))
+        // {
+        //     // Temporary token for testing (provided by developer)
+        //     token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MjZlODA2OGM5YmIwOTI0YjgxZTliZSIsImlhdCI6MTc2NDE1ODM0NywiZXhwIjoxNzY0MjQ0NzQ3fQ.RwhKiFKAcRQzMCv6SkTpdhBmOGlotyY2ysdu-Jo8AXA";
+        //     Debug.LogWarning("[GameOverAPI] ========================================");
+        //     Debug.LogWarning("[GameOverAPI] ⚠️ NO USER TOKEN FOUND");
+        //     Debug.LogWarning("[GameOverAPI] Using fallback test token for development");
+        //     Debug.LogWarning("[GameOverAPI] Production should set token via MasterGameManager.Authorization()");
+        //     Debug.LogWarning("[GameOverAPI] ========================================");
+        // }
+        // else
+        // {
+        //     Debug.Log($"[GameOverAPI] ✅ Using authenticated token (first 50 chars): {token.Substring(0, Mathf.Min(50, token.Length))}...");
+        // }
 
         // Build JSON body using SimpleJSON
         JSONClass body = new JSONClass();
@@ -57,7 +75,7 @@ public class GameOverAPI : MonoBehaviour
         body["game_score"].AsInt = gameScore;
 
         string jsonBody = body.ToString();
-        Debug.Log("Submitting JSON: " + jsonBody);
+        Debug.Log("UnityReceiver : Submitting JSON: " + jsonBody);
 
         byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonBody);
 
@@ -72,13 +90,13 @@ public class GameOverAPI : MonoBehaviour
             if (request.result == UnityWebRequest.Result.Success)
             {
 
-                Debug.Log("Success=" + request.downloadHandler.text);
+                Debug.Log("UnityReceiver : Success=" + request.downloadHandler.text);
 
             }
             else
             {
-                Debug.LogError(":x: Quiz submission failed: " + request.error);
-                Debug.LogError(request.downloadHandler.text);
+                Debug.LogError("UnityReceiver : :x: Quiz submission failed: " + request.error);
+                Debug.LogError("UnityReceiver : " + request.downloadHandler.text);
 
             }
             request.Dispose();

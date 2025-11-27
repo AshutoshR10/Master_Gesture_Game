@@ -103,8 +103,8 @@ public class MasterGameManager : MonoBehaviour
     {
         if (string.IsNullOrEmpty(token))
         {
-            Debug.LogError("[MasterGameManager] ❌ ERROR: Attempted to set empty/null token!");
-            Debug.LogError("[MasterGameManager] Token was NOT updated. Please provide a valid token.");
+            Debug.LogError("UnityReceiver : [MasterGameManager] ❌ ERROR: Attempted to set empty/null token!");
+            Debug.LogError("UnityReceiver : [MasterGameManager] Token was NOT updated. Please provide a valid token.");
             return;
         }
 
@@ -113,11 +113,11 @@ public class MasterGameManager : MonoBehaviour
 
         if (isTokenChange)
         {
-            Debug.Log("[MasterGameManager] ========================================");
-            Debug.Log("[MasterGameManager] 🔄 TOKEN CHANGE DETECTED");
-            Debug.Log("[MasterGameManager] ========================================");
-            Debug.Log($"[MasterGameManager] Old Token (first 50 chars): {userToken.Substring(0, Mathf.Min(50, userToken.Length))}...");
-            Debug.Log($"[MasterGameManager] New Token (first 50 chars): {token.Substring(0, Mathf.Min(50, token.Length))}...");
+            Debug.Log("UnityReceiver : [MasterGameManager] ========================================");
+            Debug.Log("UnityReceiver : [MasterGameManager] 🔄 TOKEN CHANGE DETECTED");
+            Debug.Log("UnityReceiver : [MasterGameManager] ========================================");
+            Debug.Log($"UnityReceiver : [MasterGameManager] Old Token (first 50 chars): {userToken.Substring(0, Mathf.Min(50, userToken.Length))}...");
+            Debug.Log($"UnityReceiver : [MasterGameManager] New Token (first 50 chars): {token.Substring(0, Mathf.Min(50, token.Length))}...");
         }
 
         // Update token
@@ -130,20 +130,20 @@ public class MasterGameManager : MonoBehaviour
 
         if (isTokenChange)
         {
-            Debug.Log("[MasterGameManager] ✅ TOKEN UPDATED SUCCESSFULLY");
-            Debug.Log("[MasterGameManager] All future API calls will use the new token.");
-            Debug.Log("[MasterGameManager] ========================================");
+            Debug.Log("UnityReceiver : [MasterGameManager] ✅ TOKEN UPDATED SUCCESSFULLY");
+            Debug.Log("UnityReceiver : [MasterGameManager] All future API calls will use the new token.");
+            Debug.Log("UnityReceiver : [MasterGameManager] ========================================");
         }
         else
         {
-            Debug.Log("[MasterGameManager] ========================================");
-            Debug.Log("[MasterGameManager] ✅ AUTHORIZATION TOKEN SAVED");
-            Debug.Log("[MasterGameManager] ========================================");
-            Debug.Log($"[MasterGameManager] Token (first 50 chars): {token.Substring(0, Mathf.Min(50, token.Length))}...");
-            Debug.Log($"[MasterGameManager] Token Length: {token.Length} characters");
-            Debug.Log("[MasterGameManager] Token saved to memory and PlayerPrefs");
-            Debug.Log("[MasterGameManager] ✅ Ready to make authenticated API calls");
-            Debug.Log("[MasterGameManager] ========================================");
+            Debug.Log("UnityReceiver : [MasterGameManager] ========================================");
+            Debug.Log("UnityReceiver : [MasterGameManager] ✅ AUTHORIZATION TOKEN SAVED");
+            Debug.Log("UnityReceiver : [MasterGameManager] ========================================");
+            Debug.Log($"UnityReceiver : [MasterGameManager] Token (first 50 chars): {token.Substring(0, Mathf.Min(50, token.Length))}...");
+            Debug.Log($"UnityReceiver : [MasterGameManager] Token Length: {token.Length} characters");
+            Debug.Log("UnityReceiver : [MasterGameManager] Token saved to memory and PlayerPrefs");
+            Debug.Log("UnityReceiver : [MasterGameManager] ✅ Ready to make authenticated API calls");
+            Debug.Log("UnityReceiver : [MasterGameManager] ========================================");
         }
     }
 
@@ -157,8 +157,8 @@ public class MasterGameManager : MonoBehaviour
 
         if (!hasToken)
         {
-            Debug.LogWarning("[MasterGameManager] ⚠️ No authorization token set!");
-            Debug.LogWarning("[MasterGameManager] Call Authorization(token) to set token.");
+            Debug.LogWarning("UnityReceiver : [MasterGameManager] ⚠️ No authorization token set!");
+            Debug.LogWarning("UnityReceiver : [MasterGameManager] Call Authorization(token) to set token.");
         }
 
         return hasToken;
@@ -172,7 +172,7 @@ public class MasterGameManager : MonoBehaviour
     {
         if (string.IsNullOrEmpty(userToken))
         {
-            Debug.LogWarning("[MasterGameManager] ⚠️ Token requested but not set. Checking PlayerPrefs...");
+            Debug.LogWarning("UnityReceiver : [MasterGameManager] ⚠️ Token requested but not set. Checking PlayerPrefs...");
 
             // Try to load from PlayerPrefs
             string savedToken = PlayerPrefs.GetString("UserAuthToken", "");
@@ -180,11 +180,11 @@ public class MasterGameManager : MonoBehaviour
             {
                 userToken = savedToken;
                 tokenInitialized = true;
-                Debug.Log("[MasterGameManager] ✅ Token restored from PlayerPrefs");
+                Debug.Log("UnityReceiver : [MasterGameManager] ✅ Token restored from PlayerPrefs");
             }
             else
             {
-                Debug.LogWarning("[MasterGameManager] ⚠️ No token found in PlayerPrefs either.");
+                Debug.LogWarning("UnityReceiver : [MasterGameManager] ⚠️ No token found in PlayerPrefs either.");
             }
         }
 
@@ -196,18 +196,18 @@ public class MasterGameManager : MonoBehaviour
     /// </summary>
     public void ClearToken()
     {
-        Debug.Log("[MasterGameManager] ========================================");
-        Debug.Log("[MasterGameManager] 🗑️ CLEARING AUTHORIZATION TOKEN");
-        Debug.Log("[MasterGameManager] ========================================");
+        Debug.Log("UnityReceiver : [MasterGameManager] ========================================");
+        Debug.Log("UnityReceiver : [MasterGameManager] 🗑️ CLEARING AUTHORIZATION TOKEN");
+        Debug.Log("UnityReceiver : [MasterGameManager] ========================================");
 
         userToken = "";
         tokenInitialized = false;
         PlayerPrefs.DeleteKey("UserAuthToken");
         PlayerPrefs.Save();
 
-        Debug.Log("[MasterGameManager] ✅ Token cleared from memory and PlayerPrefs");
-        Debug.Log("[MasterGameManager] User is now logged out");
-        Debug.Log("[MasterGameManager] ========================================");
+        Debug.Log("UnityReceiver : [MasterGameManager] ✅ Token cleared from memory and PlayerPrefs");
+        Debug.Log("UnityReceiver : [MasterGameManager] User is now logged out");
+        Debug.Log("UnityReceiver : [MasterGameManager] ========================================");
     }
 
     /// <summary>
@@ -223,8 +223,8 @@ public class MasterGameManager : MonoBehaviour
             {
                 userToken = savedToken;
                 tokenInitialized = true;
-                Debug.Log("[MasterGameManager] ✅ Token restored from previous session");
-                Debug.Log($"[MasterGameManager] Token (first 50 chars): {savedToken.Substring(0, Mathf.Min(50, savedToken.Length))}...");
+                Debug.Log("UnityReceiver : [MasterGameManager] ✅ Token restored from previous session");
+                Debug.Log($"UnityReceiver : [MasterGameManager] Token (first 50 chars): {savedToken.Substring(0, Mathf.Min(50, savedToken.Length))}...");
             }
         }
     }
@@ -233,7 +233,7 @@ public class MasterGameManager : MonoBehaviour
     {
         // Try to load token from storage on app start
         LoadTokenFromStorage();
-        Debug.unityLogger.logEnabled = false;
+        //Debug.unityLogger.logEnabled = false;
     }
 
    
