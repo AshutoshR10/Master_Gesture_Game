@@ -30,6 +30,9 @@ namespace Space
 
         private void Update()
         {
+            // ✅ PAUSE FIX: Don't update movement if game is paused (timeScale = 0)
+            if (Time.timeScale == 0f) return;
+
             if (!spawned) return;
 
             if (direction == 1)
@@ -91,7 +94,14 @@ namespace Space
                 transform.position = leftDestination;
             }
 
-            Invoke(nameof(Spawn), cycleTime);
+            // ✅ PAUSE FIX: Use coroutine instead of Invoke (respects Time.timeScale)
+            StartCoroutine(SpawnAfterDelay(cycleTime));
+        }
+
+        private System.Collections.IEnumerator SpawnAfterDelay(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            Spawn();
         }
 
         private void OnTriggerEnter2D(Collider2D other)

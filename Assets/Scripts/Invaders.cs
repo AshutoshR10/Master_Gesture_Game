@@ -50,7 +50,20 @@ namespace Space
 
         private void Start()
         {
-            InvokeRepeating(nameof(MissileAttack), missileSpawnRate, missileSpawnRate);
+            // ✅ PAUSE FIX: Use coroutine instead of InvokeRepeating (respects Time.timeScale)
+            StartCoroutine(MissileAttackCoroutine());
+        }
+
+        private System.Collections.IEnumerator MissileAttackCoroutine()
+        {
+            // Wait for initial delay
+            yield return new WaitForSeconds(missileSpawnRate);
+
+            while (true)
+            {
+                MissileAttack();
+                yield return new WaitForSeconds(missileSpawnRate);
+            }
         }
 
         private void MissileAttack()
@@ -83,6 +96,9 @@ namespace Space
 
         private void Update()
         {
+            // ✅ PAUSE FIX: Don't update movement if game is paused (timeScale = 0)
+            if (Time.timeScale == 0f) return;
+
             // Calculate the percentage of invaders killed
             int totalCount = rows * columns;
             int amountAlive = GetAliveCount();

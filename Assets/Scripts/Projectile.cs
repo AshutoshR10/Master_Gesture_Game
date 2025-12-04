@@ -17,6 +17,10 @@ namespace Space
 
         private void Update()
         {
+            // ✅ PAUSE FIX: Don't update movement if game is paused (timeScale = 0)
+            // Note: Time.deltaTime already becomes 0 when timeScale = 0, but explicit check is clearer
+            if (Time.timeScale == 0f) return;
+
             transform.position += speed * Time.deltaTime * direction;
         }
 

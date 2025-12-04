@@ -22,6 +22,9 @@ namespace Space
 
         public void Update()
         {
+            // ✅ PAUSE FIX: Don't process any updates if game is paused (timeScale = 0)
+            if (Time.timeScale == 0f) return;
+
             Vector3 position = transform.position;
 
             // Update the position of the player based on the input
@@ -44,17 +47,12 @@ namespace Space
             // Set the new position
             transform.position = position;
 
-            // Only one laser can be active at a given time so first check that
-            // there is not already an active laser
-            //if (Input.GetKey(KeyCode.Space) || Input.GetMouseButton(0))
+            // ✅ PAUSE FIX: Auto-fire with proper time tracking
             if (Time.time >= nextFireTime)
             {
                 FireLaser();
-                nextFireTime = Time.time + fireRate; // Set the next allowed fire time
+                nextFireTime = Time.time + fireRate;
             }
-            //if (laser == null && (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))) {
-            //    laser = Instantiate(laserPrefab, transform.position, Quaternion.identity);
-            //}
         }
 
 

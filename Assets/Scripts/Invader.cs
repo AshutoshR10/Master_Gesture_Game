@@ -22,7 +22,17 @@ namespace Space
 
         private void Start()
         {
-            InvokeRepeating(nameof(AnimateSprite), animationTime, animationTime);
+            // ✅ PAUSE FIX: Use coroutine instead of InvokeRepeating (respects Time.timeScale)
+            StartCoroutine(AnimateSpriteCoroutine());
+        }
+
+        private System.Collections.IEnumerator AnimateSpriteCoroutine()
+        {
+            while (true)
+            {
+                yield return new WaitForSeconds(animationTime);
+                AnimateSprite();
+            }
         }
 
         private void AnimateSprite()
