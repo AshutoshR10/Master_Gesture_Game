@@ -100,7 +100,8 @@ namespace Dino
 
         public void QuitGame()
         {
-            Application.Quit();
+            //Application.Quit();
+            Application.Unload();
         }
 
         public void PauseGame()

@@ -163,7 +163,8 @@ using JetBrains.Annotations;
                     GameManager.Instance.UnloadApplication();
                     break;
                 case "EXIT":
-                    Application.Quit();
+                    //Application.Quit();
+                    Application.Unload();
                     break;
                 case "RESTART":
                     pauseMenu.ReplayGame();
