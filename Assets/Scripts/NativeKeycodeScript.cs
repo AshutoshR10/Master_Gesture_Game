@@ -169,7 +169,19 @@ public class NativeAPI
                     pauseMenu.ReplayGame();
                     break;
                 case "7":
+                    //Application.Quit();
+
+#if UNITY_ANDROID
+
                     Application.Quit();
+#elif UNITY_IOS
+        
+        Application.Unload(); 
+#else
+        
+        Application.Quit();
+#endif
+
                     break;
                 case "8":
                     pauseMenu.ResumeGame();

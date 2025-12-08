@@ -104,7 +104,7 @@ namespace Dino
             //Application.Unload();
 
 #if UNITY_ANDROID
-            
+
             Application.Quit();
 #elif UNITY_IOS
         
