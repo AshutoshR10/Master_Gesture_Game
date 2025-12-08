@@ -73,7 +73,18 @@ namespace Flappy
 
         public void QuitGame()
         {
+            //Application.Quit();
+#if UNITY_ANDROID
+
             Application.Quit();
+#elif UNITY_IOS
+        
+        Application.Unload(); 
+#else
+        
+        Application.Quit();
+#endif
+
         }
 
         public void PauseGame()

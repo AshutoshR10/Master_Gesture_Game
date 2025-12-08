@@ -101,7 +101,18 @@ namespace Dino
         public void QuitGame()
         {
             //Application.Quit();
-            Application.Unload();
+            //Application.Unload();
+
+#if UNITY_ANDROID
+            
+            Application.Quit();
+#elif UNITY_IOS
+        
+        Application.Unload(); 
+#else
+        
+        Application.Quit();
+#endif
         }
 
         public void PauseGame()
