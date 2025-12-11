@@ -99,7 +99,8 @@ public class NativeAPI
             switch (Keycode)
             {
                 case "2": // left Movement
-                    
+                    // ✅ PAUSE FIX: Block gesture input during pause (like Dino game)
+                    if (PauseMenu.isPaused) return;
 
                     if (GameManager.Instance.restScreen.activeSelf)
                     {
@@ -111,14 +112,15 @@ public class NativeAPI
                         //GameManager.Instance.gameOverUI.SetActive(false);
                         GameManager.Instance.GameStart();
                     }
-                    
+
                         player?.MoveLeft();
                     
                     //ShowDebug("Key 2 pressed  Player Move Left");
                     break;
 
                 case "3": //right Movement
-                    
+                    // ✅ PAUSE FIX: Block gesture input during pause (like Dino game)
+                    if (PauseMenu.isPaused) return;
 
                     if (GameManager.Instance.restScreen.activeSelf)
                     {
@@ -130,7 +132,7 @@ public class NativeAPI
                         //GameManager.Instance.gameOverUI.SetActive(false);
                         GameManager.Instance.GameStart();
                     }
-                    
+
                         player?.MoveRight();
                     
                     //ShowDebug("Key 3 pressed  Player Move Right");

@@ -59,6 +59,9 @@ namespace Space
 
         public void MoveLeft()
         {
+            // ✅ PAUSE FIX: Block movement during pause (like Dino Jump method)
+            if (PauseMenu.isPaused) return;
+
             Vector2 movement = Vector2.left * speed * Time.fixedDeltaTime;
             rb.MovePosition(rb.position + movement);
 
@@ -71,6 +74,9 @@ namespace Space
 
         public void MoveRight()
         {
+            // ✅ PAUSE FIX: Block movement during pause (like Dino Jump method)
+            if (PauseMenu.isPaused) return;
+
             Vector2 movement = Vector2.right * speed * Time.fixedDeltaTime;
             rb.MovePosition(rb.position + movement);
 
