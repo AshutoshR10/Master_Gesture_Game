@@ -71,7 +71,11 @@ namespace BrickBreaker
                     }
                     else
                     {
-                        Paddle.Instance.LeftMovement();
+                        // ✅ PAUSE FIX: Block paddle movement gesture during pause
+                        if (!PauseMenu.isPaused)
+                        {
+                            Paddle.Instance.LeftMovement();
+                        }
                     }
                     break;
                 case "23":
@@ -81,7 +85,11 @@ namespace BrickBreaker
                     }
                     else
                     {
-                        Paddle.Instance.RightMovement();
+                        // ✅ PAUSE FIX: Block paddle movement gesture during pause
+                        if (!PauseMenu.isPaused)
+                        {
+                            Paddle.Instance.RightMovement();
+                        }
                     }
 
                     break;

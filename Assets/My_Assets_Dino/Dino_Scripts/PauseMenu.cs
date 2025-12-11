@@ -120,6 +120,7 @@ namespace Dino
             pauseMenu.SetActive(true);
             Time.timeScale = 0f;
             isPaused = true;
+            Debug.Log($"[PauseMenu] ⏸️ PAUSED - isPaused = {isPaused}, timeScale = {Time.timeScale}");
         }
 
         public void ResumeGame()
@@ -128,6 +129,7 @@ namespace Dino
             gameManager.ResumeRecording();
             Time.timeScale = 1f;
             isPaused = false;
+            Debug.Log($"[PauseMenu] ▶️ RESUMED - isPaused = {isPaused}, timeScale = {Time.timeScale}");
         }
         void Update()
         {

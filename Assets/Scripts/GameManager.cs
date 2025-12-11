@@ -47,7 +47,7 @@
 
         // Level timer variables.
         private float levelTimer = 120f;
-        private bool isLevelActive = false;   // True while the level is running
+        public bool isLevelActive = false;   // True while the level is running
         private bool levelEnded = false;      // To ensure EndLevel() is called only once
         private static int count = 0;
         public static string patientID = "Unknown";
@@ -366,6 +366,22 @@
             if (startPanel != null)
                 startPanel.SetActive(false);
             Time.timeScale = 1f;   // Resume game
+
+            // ✅ FIX: Close pause panel ONLY if it was opened BEFORE game started (not during gameplay)
+            if (!isLevelActive) // Only run this code the first time level starts
+            {
+                PauseMenu pauseMenuComponent = FindFirstObjectByType<PauseMenu>();
+                if (pauseMenuComponent != null && pauseMenuComponent.pauseMenu != null)
+                {
+                    if (pauseMenuComponent.pauseMenu.activeSelf)
+                    {
+                        pauseMenuComponent.pauseMenu.SetActive(false);
+                        PauseMenu.isPaused = false;
+                        Debug.Log("[GameManager] Closed pause panel that was opened before game start");
+                    }
+                }
+            }
+
             isLevelActive = true;
             invaders.gameObject.SetActive(true);
 

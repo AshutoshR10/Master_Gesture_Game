@@ -94,6 +94,9 @@
 
         public void Jump()
         {
+            // ✅ PAUSE FIX: Block jump during pause (backup protection like Dino/Space games)
+            if (PauseMenu.isPaused) return;
+
             direction = Vector3.up * strength;
 
             // ✅ RECORD FLAP ACTION

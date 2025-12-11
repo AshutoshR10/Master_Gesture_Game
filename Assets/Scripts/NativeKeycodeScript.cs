@@ -99,8 +99,9 @@ public class NativeAPI
             switch (Keycode)
             {
                 case "2": // left Movement
-                    // ✅ PAUSE FIX: Block gesture input during pause (like Dino game)
-                    if (PauseMenu.isPaused) return;
+
+                    // ✅ PAUSE FIX: Block gesture ONLY during active gameplay, not before game starts
+                    if (PauseMenu.isPaused && GameManager.Instance.isLevelActive) return;
 
                     if (GameManager.Instance.restScreen.activeSelf)
                     {
@@ -119,8 +120,9 @@ public class NativeAPI
                     break;
 
                 case "3": //right Movement
-                    // ✅ PAUSE FIX: Block gesture input during pause (like Dino game)
-                    if (PauseMenu.isPaused) return;
+
+                    // ✅ PAUSE FIX: Block gesture ONLY during active gameplay, not before game starts
+                    if (PauseMenu.isPaused && GameManager.Instance.isLevelActive) return;
 
                     if (GameManager.Instance.restScreen.activeSelf)
                     {

@@ -34,6 +34,13 @@
 
         private void Update()
         {
+            // ✅ PAUSE FIX: Block keyboard input during pause
+            if (PauseMenu.isPaused)
+            {
+                direction = Vector2.zero;
+                return;
+            }
+
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {
                 direction = Vector2.left;
@@ -42,7 +49,7 @@
             {
                 direction = Vector2.right;
             }
-            else 
+            else
             {
                 direction = Vector2.zero;
             }
@@ -50,6 +57,9 @@
         //private bool isNativeMoving = false;
         public void LeftMovement()
         {
+            // ✅ PAUSE FIX: Block movement during pause (backup protection)
+            if (PauseMenu.isPaused) return;
+
             direction = Vector2.left;
             //isNativeMoving = true;
 
@@ -62,6 +72,9 @@
 
         public void RightMovement()
         {
+            // ✅ PAUSE FIX: Block movement during pause (backup protection)
+            if (PauseMenu.isPaused) return;
+
             direction = Vector2.right;
             //isNativeMoving = true;
 
@@ -74,6 +87,9 @@
 
         private void FixedUpdate()
         {
+            // ✅ PAUSE FIX: Block physics updates during pause
+            if (PauseMenu.isPaused) return;
+
             if (direction != Vector2.zero)
             {
                 rb.AddForce(direction * speed);

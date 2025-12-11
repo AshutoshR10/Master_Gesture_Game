@@ -115,13 +115,15 @@ using JetBrains.Annotations;
         public void OnKeyPressed(string keyCode)
         {
 
-            /* if (keyCode == "1") 
+            /* if (keyCode == "1")
              {
-                 player?.Jump(); 
+                 player?.Jump();
              }*/
 
 
             //AddDebug($"Key pressed: {keyCode}");
+            // 🔍 DEBUG: Log every gesture received
+            Debug.Log($"[KeyBinding] 📱 Gesture received: '{keyCode}' - isPaused: {PauseMenu.isPaused}");
 
             // Ensure we have updated references
             if (player == null || gameManager == null)
@@ -207,6 +209,9 @@ using JetBrains.Annotations;
 
         private void HandleJumpAndStart()
         {
+            // 🔍 DEBUG: Log when this method is called
+            Debug.Log($"[KeyBinding] HandleJumpAndStart called - isPaused: {PauseMenu.isPaused}");
+
             if (gameManager == null)
             {
                 //AddDebug("GameManager not found!");
@@ -214,22 +219,32 @@ using JetBrains.Annotations;
             }
             if (gameManager.gameOverText.isActiveAndEnabled)
             {
+                Debug.Log("[KeyBinding] GameOver screen active - calling NewGame()");
                 gameManager.NewGame();
             }
             // Handle start panel and game start
             if (gameManager.startPanel != null && gameManager.startPanel.activeSelf)
             {
+                Debug.Log("[KeyBinding] Start panel active - calling StartGameFromKey()");
                 gameManager.startPanel.SetActive(false);
                 gameManager.StartGameFromKey();
                 //  AddDebug("Game started from key press");
             }
             else
             {
+                // ✅ PAUSE FIX: Block jump gesture input during pause (like Space game)
+                if (PauseMenu.isPaused)
+                {
+                    Debug.Log("[KeyBinding] 🚫 BLOCKED: Jump gesture during pause!");
+                    return;
+                }
+
                 // Handle jump only if game is in playing state
                 if (gameManager.currentGameState == GameManager.GameState.Playing)
                 {
                     if (player != null)
                     {
+                        Debug.Log("[KeyBinding] Calling player.Jump()");
                         player.Jump();
                         //AddDebug("Jump executed");
                     }
@@ -240,6 +255,7 @@ using JetBrains.Annotations;
                 }
                 else
                 {
+                    Debug.Log($"[KeyBinding] Cannot jump - Game state: {gameManager.currentGameState}");
                     //AddDebug($"Cannot jump - Game state: {gameManager.currentGameState}");
                 }
             }

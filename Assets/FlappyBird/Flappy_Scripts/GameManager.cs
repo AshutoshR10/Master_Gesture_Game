@@ -464,6 +464,19 @@
             }
 
             Time.timeScale = 1f;
+
+            // ✅ FIX: Close pause panel if it was opened before game started
+            PauseMenu pauseMenuComponent = FindFirstObjectByType<PauseMenu>();
+            if (pauseMenuComponent != null && pauseMenuComponent.pauseMenu != null)
+            {
+                if (pauseMenuComponent.pauseMenu.activeSelf)
+                {
+                    pauseMenuComponent.pauseMenu.SetActive(false);
+                    PauseMenu.isPaused = false;
+                    Debug.Log("[GameManager] Closed pause panel that was opened before game start");
+                }
+            }
+
             player.enabled = true;
             isGamePaused = false;
 

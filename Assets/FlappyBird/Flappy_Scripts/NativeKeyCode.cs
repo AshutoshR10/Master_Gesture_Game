@@ -92,7 +92,11 @@ namespace Flappy
             }
             else
             {
-                player.Jump();
+                // ✅ PAUSE FIX: Block jump ONLY during active gameplay pause, not before game starts
+                if (!PauseMenu.isPaused || GameManager.Instance.isGamePaused)
+                {
+                    player.Jump();
+                }
             }
 
             if (GameManager.Instance.gameOver.activeSelf)
@@ -126,7 +130,11 @@ namespace Flappy
                 ShowDebug("Key 15 pressed - Player Jumped");
             }*/
 
-            GameManager.Instance.GameStart();
+            // ✅ PAUSE FIX: Don't call GameStart during gameplay pause, but allow before game starts
+            if (!PauseMenu.isPaused || GameManager.Instance.isGamePaused)
+            {
+                GameManager.Instance.GameStart();
+            }
             // Third priority: If game is already running, make the player jump
             /*if (player != null && !GameManager.Instance.isGamePaused && Time.timeScale > 0)
             {
