@@ -672,6 +672,9 @@
                 GameActionTracker.Instance.EndSession(score, "retry");
             }
 
+            // ✅ SCENE TRANSITION FIX: Reset pause state before reloading scene
+            PauseMenu.isPaused = false;
+
             // Reset game state variables
             levelCompleteTriggered = false;
             gameStarted = false;
@@ -750,6 +753,8 @@
                 GameActionTracker.Instance.EndSession(score, "completed");
             }
 
+            // ✅ SCENE TRANSITION FIX: Reset pause state before loading next level
+            PauseMenu.isPaused = false;
             Time.timeScale = 1f;
             /*int currentBuildIndex = SceneManager.GetActiveScene().buildIndex;
             int nextBuildIndex = currentBuildIndex + 1;

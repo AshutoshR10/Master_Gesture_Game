@@ -59,34 +59,40 @@ namespace BrickBreaker
 
         public void KeyCodeNative(string Keycode)
         {
+            // ✅ SCENE TRANSITION FIX: Ensure we have updated references (like DINO game)
+            if (GameManager == null || paddle == null)
+            {
+                FinfRefBrick();
+            }
+
             switch (Keycode)
             {
                 case "21"://GameStart
                     //GameManager.Instance.GameStartKey();
                     break;
                 case "22":
-                    if (!GameManager.Instance.gameStarted)
+                    if (GameManager.Instance != null && !GameManager.Instance.gameStarted)
                     {
                         GameManager.Instance.GameStartKey();
                     }
                     else
                     {
                         // ✅ PAUSE FIX: Block paddle movement gesture during pause
-                        if (!PauseMenu.isPaused)
+                        if (!PauseMenu.isPaused && Paddle.Instance != null)
                         {
                             Paddle.Instance.LeftMovement();
                         }
                     }
                     break;
                 case "23":
-                    if (!GameManager.Instance.gameStarted)
+                    if (GameManager.Instance != null && !GameManager.Instance.gameStarted)
                     {
                         GameManager.Instance.GameStartKey();
                     }
                     else
                     {
                         // ✅ PAUSE FIX: Block paddle movement gesture during pause
-                        if (!PauseMenu.isPaused)
+                        if (!PauseMenu.isPaused && Paddle.Instance != null)
                         {
                             Paddle.Instance.RightMovement();
                         }

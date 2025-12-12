@@ -96,14 +96,20 @@ public class NativeAPI
         }
         public void NativeKeyCodes(string Keycode)
         {
+            // ✅ SCENE TRANSITION FIX: Ensure we have updated references (like DINO game)
+            if (player == null || gameManager == null)
+            {
+                FindRef();
+            }
+
             switch (Keycode)
             {
                 case "2": // left Movement
 
                     // ✅ PAUSE FIX: Block gesture ONLY during active gameplay, not before game starts
-                    if (PauseMenu.isPaused && GameManager.Instance.isLevelActive) return;
+                    if (PauseMenu.isPaused && GameManager.Instance != null && GameManager.Instance.isLevelActive) return;
 
-                    if (GameManager.Instance.restScreen.activeSelf)
+                    if (GameManager.Instance == null || GameManager.Instance.restScreen.activeSelf)
                     {
                         return;
                     }
@@ -122,9 +128,9 @@ public class NativeAPI
                 case "3": //right Movement
 
                     // ✅ PAUSE FIX: Block gesture ONLY during active gameplay, not before game starts
-                    if (PauseMenu.isPaused && GameManager.Instance.isLevelActive) return;
+                    if (PauseMenu.isPaused && GameManager.Instance != null && GameManager.Instance.isLevelActive) return;
 
-                    if (GameManager.Instance.restScreen.activeSelf)
+                    if (GameManager.Instance == null || GameManager.Instance.restScreen.activeSelf)
                     {
                         return;
                     }

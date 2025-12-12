@@ -563,6 +563,8 @@
                 GameActionTracker.Instance.EndSession((int)score, "completed");
             }
 
+            // ✅ SCENE TRANSITION FIX: Reset pause state before loading next level
+            PauseMenu.isPaused = false;
             Time.timeScale = 1f;
             ResumeRecording();
             //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);

@@ -57,6 +57,12 @@ namespace Flappy
         }
         public void NativeKeyCodes(string Keycode)
         {
+            // ✅ SCENE TRANSITION FIX: Ensure we have updated references (like DINO game)
+            if (player == null || GameManager == null)
+            {
+                FindReferance();
+            }
+
             switch (Keycode)
             {
                 case "15": // Game start - equivalent to Spacebar functionality
@@ -86,20 +92,21 @@ namespace Flappy
         private void HandleKey15()
         {
 
-            if (GameManager.Instance.healthyUnhealthyPanel.activeSelf)
+            if (GameManager.Instance != null && GameManager.Instance.healthyUnhealthyPanel.activeSelf)
             {
                 GameManager.Instance.healthyUnhealthyPanel.SetActive(false);
             }
             else
             {
                 // ✅ PAUSE FIX: Block jump ONLY during active gameplay pause, not before game starts
-                if (!PauseMenu.isPaused || GameManager.Instance.isGamePaused)
+                if (!PauseMenu.isPaused || (GameManager.Instance != null && GameManager.Instance.isGamePaused))
                 {
-                    player.Jump();
+                    if (player != null)
+                        player.Jump();
                 }
             }
 
-            if (GameManager.Instance.gameOver.activeSelf)
+            if (GameManager.Instance != null && GameManager.Instance.gameOver.activeSelf)
             {
                 GameManager.Instance.Play();
             }
@@ -131,7 +138,7 @@ namespace Flappy
             }*/
 
             // ✅ PAUSE FIX: Don't call GameStart during gameplay pause, but allow before game starts
-            if (!PauseMenu.isPaused || GameManager.Instance.isGamePaused)
+            if (GameManager.Instance != null && (!PauseMenu.isPaused || GameManager.Instance.isGamePaused))
             {
                 GameManager.Instance.GameStart();
             }
